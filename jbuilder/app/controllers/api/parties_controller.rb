@@ -9,3 +9,5 @@ class Api::PartiesController < ApplicationController
     render :show
   end
 end
+
+
