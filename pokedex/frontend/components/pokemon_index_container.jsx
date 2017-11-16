@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import PokemonIndex from './pokemon_index';
 
 const mapStateToProps = function (state) {
-  console.log("selector result:");
-  console.log(selectAllPokemon(state));
   return {
     pokemon: selectAllPokemon(state)
   };
@@ -14,7 +12,7 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    requestAllPokemon: requestAllPokemon(dispatch)
+    requestAllPokemon: () => dispatch(requestAllPokemon())
   };
 };
 
