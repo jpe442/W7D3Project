@@ -4,6 +4,13 @@ const APIUtil = {
       url: '/api/pokemon',
       method: 'GET'
     });
+  },
+
+  fetchPoke: function(pokeId) {
+    return $.ajax({
+      url: '/api/pokemon/' + pokeId,
+      method: 'GET'
+    });
   }
 };
 
