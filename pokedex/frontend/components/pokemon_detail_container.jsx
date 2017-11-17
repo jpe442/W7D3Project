@@ -8,7 +8,8 @@ import PokemonDetail from './pokemon_detail';
 
 const mapStateToProps = function (state) {
   return {
-    poke: state.entities.pokemon[state.ui.pokeDisplay]
+    poke: state.entities.pokemon[state.ui.pokeDisplay],
+    items: state.entities.items
   };
 };
 

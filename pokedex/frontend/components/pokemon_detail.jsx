@@ -1,4 +1,5 @@
 import React from 'react';
+import ItemDetailContainer from './item_detail_container';
 class PokemonDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,9 @@ class PokemonDetail extends React.Component {
       return(<h1>Loading...</h1>);
     }
     const pokemon = this.props.poke;
-    // const items = this.props.poke.items;
+    const items = this.props.items.map((item) => (
+      <ItemDetail />
+    ));
     return(
       <div>
         <h1>{pokemon.name}</h1>
@@ -31,6 +34,11 @@ class PokemonDetail extends React.Component {
           <li>Defense: {pokemon.defense}</li>
           <li>Moves: {pokemon.moves}</li>
           <li><img src={pokemon.image_url}></img></li>
+        </ul>
+        <h3>Items</h3>
+        <ul>
+          {items}
+          <Route path="/pokemon/:pokemonId/item/:itemId" component={ItemDetailContainer} />
         </ul>
       </div>
     );
