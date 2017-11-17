@@ -20151,11 +20151,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _pokemon_actions = __webpack_require__(11);
 
-var _merge = __webpack_require__(170);
+var _merge2 = __webpack_require__(170);
 
-var _merge2 = _interopRequireDefault(_merge);
+var _merge3 = _interopRequireDefault(_merge2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var pokemonReducer = function pokemonReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -20164,11 +20166,12 @@ var pokemonReducer = function pokemonReducer() {
   Object.freeze(state);
   switch (action.type) {
     case _pokemon_actions.RECEIVE_ALL_POKEMON:
-      return action.pokemon;
+      return (0, _merge3.default)({}, state, action.pokemon);
     case _pokemon_actions.RECEIVE_POKE:
-      var newState = (0, _merge2.default)({}, state);
-      newState[action.poke.id] = action.poke;
-      return newState;
+      // const newState = merge({}, state);
+      // newState[action.poke.id] = action.poke;
+      // return newState;
+      return (0, _merge3.default)({}, state, _defineProperty({}, action.poke.pokemon.id, action.poke.pokemon));
     default:
       return state;
   }
@@ -27259,7 +27262,6 @@ var uiReducer = function uiReducer() {
   Object.freeze(state);
   switch (action.type) {
     case _pokemon_actions.RECEIVE_POKE:
-      console.log("uireducer receive poke");
       var newState = (0, _merge2.default)({}, state);
       newState.pokeDisplay = action.poke.pokemon.id;
       return newState;
@@ -29175,19 +29177,57 @@ var PokemonDetail = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (this.props.poke) {
-        return _react2.default.createElement(
-          "h1",
-          null,
-          this.props.poke.name
-        );
-      } else {
+      if (!this.props.poke) {
         return _react2.default.createElement(
           "h1",
           null,
           "Loading..."
         );
       }
+      var pokemon = this.props.poke;
+      // const items = this.props.poke.items;
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "h1",
+          null,
+          pokemon.name
+        ),
+        _react2.default.createElement(
+          "ul",
+          null,
+          _react2.default.createElement(
+            "li",
+            null,
+            "Type: ",
+            pokemon.poke_type
+          ),
+          _react2.default.createElement(
+            "li",
+            null,
+            "Attack: ",
+            pokemon.attack
+          ),
+          _react2.default.createElement(
+            "li",
+            null,
+            "Defense: ",
+            pokemon.defense
+          ),
+          _react2.default.createElement(
+            "li",
+            null,
+            "Moves: ",
+            pokemon.moves
+          ),
+          _react2.default.createElement(
+            "li",
+            null,
+            _react2.default.createElement("img", { src: pokemon.image_url })
+          )
+        )
+      );
     }
   }]);
 

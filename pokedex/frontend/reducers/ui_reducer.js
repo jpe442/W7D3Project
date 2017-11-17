@@ -5,7 +5,6 @@ const uiReducer = function(state = {}, action) {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_POKE:
-      console.log("uireducer receive poke");
       const newState = merge({}, state);
       newState.pokeDisplay = action.poke.pokemon.id;
       return newState;

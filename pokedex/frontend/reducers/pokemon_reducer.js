@@ -5,11 +5,12 @@ const pokemonReducer = function(state = {}, action) {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_ALL_POKEMON:
-      return action.pokemon;
+      return merge({}, state, action.pokemon);
     case RECEIVE_POKE:
-      const newState = merge({}, state);
-      newState[action.poke.id] = action.poke;
-      return newState;
+      // const newState = merge({}, state);
+      // newState[action.poke.id] = action.poke;
+      // return newState;
+      return merge({}, state, { [action.poke.pokemon.id]: action.poke.pokemon });
     default:
       return state;
   }
